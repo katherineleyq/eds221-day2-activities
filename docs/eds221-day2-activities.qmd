@@ -1,0 +1,49 @@
+---
+title: "eds221-day2-activities"
+author: "Kat Le"
+execute:
+    warning: FALSE
+    error: FALSE
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+# read in data
+
+mack_verts <- read_csv(here("data", "AS00601.csv")) %>% 
+  clean_names()
+```
+
+```{r}
+# indexing activities
+
+mc_wt_5 <- mack_verts$weight[5]
+mc_length_08_20 <- mack_verts$length1[8:20]
+mc_dates <- mack_verts$sampledate
+```
+
+```{r}
+# subsetting
+View(mack_verts)
+
+mc_salamanders <- mack_verts %>% 
+  filter(species == "DITE")
+```
+
+```{r}
+# scatterplot of salamander length x weight
+
+salamander_plot <- ggplot(data = mc_salamanders, aes(x= length1, y = weight, color = section)) +
+  geom_point()+
+  labs(x = "Length", y = "Weight", title = "Salamander Length vs Weight")
+salamander_plot
+```
+
+```{r}
+ggsave(filename = here("figures", "salamander_size.png"))
+```

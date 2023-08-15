@@ -65,5 +65,5 @@ trout_plot
 ```
 
 ```{r}
-ggsave(filename = here("figures", "cutthroat_size.png"))
+ggsave(filename = here("figures", "cutthroat_size.png"), plot = trout_plot)
 ```

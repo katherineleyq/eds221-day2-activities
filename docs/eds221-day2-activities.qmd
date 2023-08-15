@@ -47,3 +47,23 @@ salamander_plot
 ```{r}
 ggsave(filename = here("figures", "salamander_size.png"))
 ```
+
+```{r}
+# subsetting
+mc_trout <- mack_verts %>% 
+  filter(species == "ONCL")
+
+# scatterplot of salamander length x weight
+
+trout_plot <- ggplot(data = mc_trout, aes(x= length1, y = weight, color = reach)) +
+  geom_point()+
+  labs(x = "Length", y = "Weight", title = "Trout Length vs Weight by Creek") +
+  facet_wrap("sitecode") +
+  scale_color_manual(values = c("red", "yellow", "blue"))
+trout_plot
+
+```
+
+```{r}
+ggsave(filename = here("figures", "cutthroat_size.png"))
+```
